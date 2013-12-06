@@ -107,7 +107,7 @@
         
         // Fire the added callback if it matches the current context
         if (this.context !== '' && this._inArray(this.context, query_object.context)) {
-            query_object.match();
+            query_object.match(query_object.args);
         }
         
         return this.callbacks[ this.callbacks.length - 1];
@@ -148,7 +148,7 @@
 
             callback_function = this.callbacks[i][key];
             if (this._inArray(size, this.callbacks[i].context) && callback_function !== undefined) {
-                callback_function();
+                callback_function(this.callbacks[i].args);
             }
 
         }
