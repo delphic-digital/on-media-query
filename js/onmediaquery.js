@@ -106,7 +106,7 @@
         }
         
         // Fire the added callback if it matches the current context
-        if (this.context !== '' && this._inArray(this.context, query_object.context)) {
+        if (this.context !== '' && this._inArray(this.context, query_object.context) || this._inArray('*', query_object.context)) {
             query_object.match(query_object.args);
         }
         
@@ -151,6 +151,9 @@
                 callback_function(this.callbacks[i].args);
             }
 
+            if(this._inArray('*', this.callbacks[i].context) && callback_function !== undefined) {
+                callback_function(this.callbacks[i].args);
+            }
         }
     };
 
